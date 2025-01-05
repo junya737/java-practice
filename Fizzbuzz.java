@@ -1,6 +1,6 @@
 public class Fizzbuzz {
-    public static void main(String[] args){
-        for (int i =1; i <100; i++){
+    public static void doFizzBuzz(int maxNumber){
+        for (int i =1; i <maxNumber; i++){
             if (i%3 == 0 && i%5 == 0){
                 System.out.println("FizzBuzz");
             }
@@ -14,6 +14,9 @@ public class Fizzbuzz {
                 System.out.println(i);
             }
         }
+    }
+    public static void main(String[] args) {
+        doFizzBuzz(50); 
     }
 }
 
