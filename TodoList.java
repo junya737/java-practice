@@ -7,7 +7,7 @@ public class TodoList {
     public static void main(String[] args) {
         List<Task> tasks = new ArrayList<Task>();
         Task task1 = new SimpleTask("買い物");
-        Task task2 = new SimpleTask("掃除");
+        Task task2 = new DeadlineTask("レポート提出", "2024/12/31");
         task1.markAsDone();
 
         tasks.add(task1);
@@ -56,7 +56,6 @@ abstract class Task{
 
 // simple task
 class SimpleTask extends Task{
-
     // Constructor
     public SimpleTask(String title){
         super(title);
@@ -66,6 +65,20 @@ class SimpleTask extends Task{
     public String getDetails(){
         return getTitle() + " : " + getIsDone();
     }
-
-
 }
+
+// deadline task
+class DeadlineTask extends Task{
+    private String deadline;
+    // Constructor
+    public DeadlineTask(String title, String deadline){
+        super(title);
+        this.deadline = deadline;
+    }
+
+    @Override
+    public String getDetails(){
+        return getTitle() + " : " + getIsDone() + " : " + this.deadline;
+    }
+}
+
