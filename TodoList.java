@@ -1,15 +1,30 @@
-public class TodoList {
-    public static void main(String[] args) {
+import java.util.ArrayList;
+import java.util.List;
 
+
+public class TodoList {
+
+    public static void print(String message) {
+        System.out.println(message);
+    }
+
+    public static void main(String[] args) {
+        List<Task> tasks = new ArrayList<Task>();
         Task task1 = new Task("買い物");
         Task task2 = new Task("掃除");
-
         task1.markAsDone();
 
-        System.out.println(task1.getTask() + task1.getIsDone());
-        System.out.println(task2.getTask() + task2.getIsDone());
+        tasks.add(task1);
+        tasks.add(task2);
+
+        for (Task task : tasks){
+            print(task.getTask()+ " : " + task.getIsDone());
+        }
+        
     }
 }
+
+
 
 class Task{
     private String task;
@@ -34,5 +49,6 @@ class Task{
     public void markAsNotDone(){
         this.isDone = false;
     }
+
 }
 
