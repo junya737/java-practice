@@ -1,16 +1,18 @@
+import java.util.Arrays;
+import java.util.List;
+
 public class Class {
     public static void main(String[] args) {
         GasCar honda = new GasCar("Red", 100, 50);
         ElectricCar tesla = new ElectricCar("Blue", 150, 80);
-
-        honda.refuel();
-        honda.drive();
-        honda.stop();
-
-        tesla.charge();
-        tesla.drive();
-        tesla.stop();
         
+        // ポリモーフィズム．メソッド名を共通にする．
+        List<Car> cars = Arrays.asList(honda, tesla); 
+        for (Car car : cars){
+            car.refuel();
+            car.drive();
+            car.stop();
+        }
 
     }
 }
@@ -25,6 +27,8 @@ abstract class Car {
         this.speed = speed;
     }
 
+    // Abstract methods．子クラスで実装する
+    abstract void refuel();
     abstract void drive();
 
     public void stop(){
@@ -42,7 +46,8 @@ class ElectricCar extends Car{
         this.batteryLevel = batteryLevel;
     }
 
-    public void charge(){
+    @Override
+    void refuel(){
         System.out.println(this.color + " car is charging at " + this.batteryLevel + " %");
     }
 
@@ -60,8 +65,9 @@ class GasCar extends Car{
         this.fuelLevel = fuelLevel;
     }
 
-    public void refuel(){
-        System.out.println(this.color + " car is refueling at " + this.fuelLevel + " %");
+    @Override
+    void refuel(){
+        System.out.println(this.color + " car is refueling at " + this.fuelLevel + " L");
     }
 
     @Override
