@@ -1,15 +1,21 @@
 public class Class {
     public static void main(String[] args) {
-        Car toyota = new Car("Red", 100);
-        ElectricCar tesla = new ElectricCar("Blue", 150, 90);
-        toyota.drive();
+        GasCar honda = new GasCar("Red", 100, 50);
+        ElectricCar tesla = new ElectricCar("Blue", 150, 80);
+
+        honda.refuel();
+        honda.drive();
+        honda.stop();
+
         tesla.charge();
         tesla.drive();
+        tesla.stop();
+        
 
     }
 }
 
-class Car{
+abstract class Car {
     String color;
     float speed;
 
@@ -19,9 +25,11 @@ class Car{
         this.speed = speed;
     }
 
-    public void drive(){
-        System.out.println(this.color + " car is driving at " + this.speed + " km/h");
-    }
+    abstract void drive();
+
+    public void stop(){
+        System.out.println(this.color + " car is stopping");
+}
 }
 
 // Electric car. Inherits from Car
@@ -37,4 +45,28 @@ class ElectricCar extends Car{
     public void charge(){
         System.out.println(this.color + " car is charging at " + this.batteryLevel + " %");
     }
+
+    @Override
+    void drive(){
+        System.out.println(this.color + " car is driving at " + this.speed + " km/h");
+    }
 }
+
+class GasCar extends Car{
+    float fuelLevel;
+
+    GasCar(String color, float speed, float fuelLevel){
+        super(color, speed);
+        this.fuelLevel = fuelLevel;
+    }
+
+    public void refuel(){
+        System.out.println(this.color + " car is refueling at " + this.fuelLevel + " %");
+    }
+
+    @Override
+    void drive(){
+        System.out.println(this.color + " car is driving at " + this.speed + " km/h");
+    }
+}
+
